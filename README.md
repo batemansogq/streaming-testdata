@@ -1,5 +1,6 @@
-This repo is subset of the "Streaming Synthetic Sales Data Generator" by [Gary Stafford](https://github.com/garystafford/streaming-sales-generator/blob/main/docker/spark-kstreams-stack.yml)
-it takes the basic streaming elements and extends it using [Faker](https://pypi.org/project/Faker/)  
+This repo is subset of the "Streaming Synthetic Sales Data Generator" by [Gary Stafford](https://github.com/garystafford/streaming-sales-generator/blob/main/docker/spark-kstreams-stack.yml).
+
+it takes the basic streaming elements and extends it using [Faker](https://pypi.org/project/Faker/) to create configurable test data payloads in JSON format. 
 
 ## TL;DR
 
