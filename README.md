@@ -28,20 +28,21 @@ docker swarm init
 docker stack deploy stream --compose-file docker/kafka-stack.yml
 
 # view results
-docker stats
+docker ps
 
-docker container ls --format "{{ .Names}}, {{ .Status}}"
+# stop service and remove stream
+docker stack rm stream
+
 ```
-
 ### Containers
 
 After a couple of mins, you will see the following containers:
 
 ```text
-CONTAINER ID   IMAGE                      PORTS                                    NAMES
-6114dc4a9824   bitnami/kafka:3.2.1        9092/tcp                                 streaming-stack_kafka.1...
-837c0cdd1498   bitnami/zookeeper:3.8.0    2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp   streaming-stack_zookeeper.1...
-
+CONTAINER ID   IMAGE                                      PORTS                                    NAMES
+6114dc4a9824   bitnami/kafka:3.2.1                        9092/tcp                                 stream_kafka.1...
+837c0cdd1498   bitnami/zookeeper:3.8.0                    2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp   stream_zookeeper.1...
+eb9bfea05dd8   provectuslabs/kafka-ui                     8080/tcp                                 stream_kafka-ui
 ```
 
 ## Helpful Commands
