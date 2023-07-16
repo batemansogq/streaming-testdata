@@ -5,7 +5,7 @@ it takes the basic streaming elements and extends it using [Faker](https://pypi.
 ## TL;DR
 
 Deploy Kafka
-1. `docker stack deploy streaming-stack --compose-file docker/kafka-stack.yml` to create local instance of Kafka
+1. `docker stack deploy stream --compose-file docker/kafka-stack.yml` to create local instance of Kafka
 Run the Test data creation scripts
 2. `python3 -m pip install kafka-python` to install the `kafka-python` package
 3. `cd sales_generator/`
@@ -14,19 +14,18 @@ Run the Test data creation scripts
 
 ## Background
 
-This is a intended to be a simple generator for streaming testdata, produced via Kafka endpoint
-\
+This is a intended to be a simple generator for streaming testdata, produced via Kafka endpoint.
 
 
 ## Docker Kafka Stack
 
 ```shell
 # optional: delete previous stack
-docker stack rm streaming-stack
+docker stack rm stream
 
 # deploy kafka stack
 docker swarm init
-docker stack deploy streaming-stack --compose-file docker/spark-kstreams-stack.yml
+docker stack deploy stream --compose-file docker/kafka-stack.yml
 
 # view results
 docker stats
@@ -36,13 +35,10 @@ docker container ls --format "{{ .Names}}, {{ .Status}}"
 
 ### Containers
 
-Example Apache Kafka, Zookeeper, Spark, Flink, Pinot, Superset, KStreams, and JupyterLab containers:
+After a couple of mins, you will see the following containers:
 
 ```text
 CONTAINER ID   IMAGE                      PORTS                                    NAMES
-8edd2caf765d   garystafford/kstreams-kafka-demo:0.7.0                              streaming-stack_kstreams.1...
-1d7c6ab3009d   bitnami/spark:3.3                                                   streaming-stack_spark...
-1d7c6ab3009d   bitnami/spark:3.3                                                   streaming-stack_spark-worker...
 6114dc4a9824   bitnami/kafka:3.2.1        9092/tcp                                 streaming-stack_kafka.1...
 837c0cdd1498   bitnami/zookeeper:3.8.0    2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp   streaming-stack_zookeeper.1...
 
@@ -67,7 +63,7 @@ nohup python3 ./producer.py &
 Manage the topics from within the Kafka container:
 
 ```shell
-docker exec -it $(docker container ls --filter  name=streaming-stack_kafka.1 --format "{{.ID}}") bash
+docker exec -it $(docker container ls --filter  name=stream_kafka.1 --format "{{.ID}}") bash
 
 export BOOTSTRAP_SERVERS="localhost:9092"
 export TOPIC_PRODUCTS="demo.products"
