@@ -1,9 +1,11 @@
-# This repo is subset of the "Streaming Synthetic Sales Data Generator" by [Gary Stafford](https://github.com/garystafford/streaming-sales-generator/blob/main/docker/spark-kstreams-stack.yml)
-# it takes the basic streaming elements and extends it using [Faker](https://pypi.org/project/Faker/)  
+This repo is subset of the "Streaming Synthetic Sales Data Generator" by [Gary Stafford](https://github.com/garystafford/streaming-sales-generator/blob/main/docker/spark-kstreams-stack.yml)
+it takes the basic streaming elements and extends it using [Faker](https://pypi.org/project/Faker/)  
 
 ## TL;DR
 
-1. `docker stack deploy streaming-stack --compose-file docker/spark-kafka-stack.yml` to create local instance of Kafka
+Deploy Kafka
+1. `docker stack deploy streaming-stack --compose-file docker/kafka-stack.yml` to create local instance of Kafka
+Run the Test data creation scripts
 2. `python3 -m pip install kafka-python` to install the `kafka-python` package
 3. `cd sales_generator/`
 4. `python3 ./producer.py` to start generating streaming data to Apache Kafka
@@ -12,7 +14,7 @@
 ## Background
 
 This is a intended to be a simple generator for streaming testdata, produced via Kafka endpoint
-
+\
 
 
 ## Docker Kafka Stack
