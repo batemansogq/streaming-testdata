@@ -23,9 +23,10 @@ class LoginData:
             'username': self.first_name,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'phone': self.phone,
+            'Nested': {            'phone': self.phone,
             'city': self.city,
             'about': self.about
+            }
         }
         return p
 
