@@ -6,21 +6,26 @@ import json
 import random
 import time
 from datetime import datetime
-from faker import Faker
-from kafka import KafkaProducer
 
+from faker import Faker
+
+from kafka import KafkaProducer
 from config.kafka import get_configs
 
 config = configparser.ConfigParser()
 config.read("configuration/configuration.ini")
 
+print(config.read("configuration/configuration.ini"))
+
 # *** CONFIGURATION ***
-topic_testdata = config["KAFKA"]["topic_data"]
+topic_testdata = config["KAFKA"]["topic_testdata"]
 
-min_freq = int(config["Streaming Config"]["min_freq"])
-max_freq = int(config["Streaming Config"]["max_freq"])
-number_of_txt = int(config["Streaming Config"]["number_of_txt"])
+min_freq = int(config["STREAM"]["min_freq"])
+max_freq = int(config["STREAM"]["max_freq"])
+number_of_txt = int(config["STREAM"]["number_of_txt"])
 
+# *** VARIABLES ***
+LoginPayload = []
 
 class LoginData:
 
@@ -36,19 +41,24 @@ class LoginData:
         self.about = "This is a sample text : about"
         self.event_time = str(datetime.utcnow())
 
-    def get_json(self):
-        p = {
-            'password': self.password,
-            'email': self.email,
-            'username': self.first_name,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'phone': self.phone,
-            'city': self.city,
-            'about': self.about,
-            'event_time': self.event_time
-        }
-        return p
+    def __str__(self):
+        return (
+            "password: {0}, email: {1}, username: {2}, first_name: {3}, "
+            "last_name {4}, phone: {5}, city: {6}, about: {7}, "
+            "event_time: {8}".format(
+                self.self.password,
+                self.email,
+                self.first_name,
+                self.first_name,
+                self.last_name,
+                self.phone,
+                self.city,
+                self.is_member,
+                self.about,
+                self.event_time,
+            )
+        )
+
 
 def main():
     input_data()
@@ -56,8 +66,8 @@ def main():
 # create the individual json payload a number of times and publish to kafka
 def input_data():
     for i in range(0, number_of_txt):
-        logindata = LoginData()
-        publish_to_kafka(topic_testdata, logindata.get_json())
+        LoginPayload.append(LoginData())
+        publish_to_kafka(topic_testdata, LoginPayload)
 #delay for a period
     time.sleep(random.randint(min_freq, max_freq))
 
