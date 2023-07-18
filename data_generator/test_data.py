@@ -53,7 +53,6 @@ class LoginData:
                 self.last_name,
                 self.phone,
                 self.city,
-                self.is_member,
                 self.about,
                 self.event_time,
             )
