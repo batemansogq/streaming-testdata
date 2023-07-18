@@ -33,8 +33,8 @@ def consume_messages():
     configs = get_configs()
 
     consumer = KafkaConsumer(
-        *topics,
-        #'demo.purchases',
+        #*topics,
+        'demo.testdata',
         value_deserializer=lambda m: json.loads(m.decode("utf-8")),
         auto_offset_reset="earliest",
         **configs
