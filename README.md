@@ -55,7 +55,7 @@ python -m pip install kafka-python
 cd data_generator/
 
 # run in foreground
-python ./producer.py
+python ./test_data.py
 # alternately, run as background process
 nohup python ./producer.py &
 ```
