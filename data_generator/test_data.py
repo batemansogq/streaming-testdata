@@ -46,7 +46,7 @@ class LoginData:
             "password: {0}, email: {1}, username: {2}, first_name: {3}, "
             "last_name {4}, phone: {5}, city: {6}, about: {7}, "
             "event_time: {8}".format(
-                self.self.password,
+                self.password,
                 self.email,
                 self.first_name,
                 self.first_name,
@@ -67,6 +67,7 @@ def main():
 def input_data():
     for i in range(0, number_of_txt):
         LoginDetail = LoginData()
+        print(LoginDetail)
         LoginPayload.append(LoginDetail)
         print(type(LoginPayload))
        # publish_to_kafka(topic_testdata, LoginPayload)
