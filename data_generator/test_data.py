@@ -15,7 +15,6 @@ from config.kafka import get_configs
 config = configparser.ConfigParser()
 config.read("configuration/configuration.ini")
 
-print(config.read("configuration/configuration.ini"))
 
 # *** CONFIGURATION ***
 topic_testdata = config["KAFKA"]["topic_testdata"]
@@ -23,6 +22,8 @@ topic_testdata = config["KAFKA"]["topic_testdata"]
 min_freq = int(config["STREAM"]["min_freq"])
 max_freq = int(config["STREAM"]["max_freq"])
 number_of_txt = int(config["STREAM"]["number_of_txt"])
+
+print(min_freq, max_freq, number_of_txt)
 
 # *** VARIABLES ***
 LoginPayload = {}
@@ -66,7 +67,7 @@ def main():
 def input_data():
     for i in range(0, number_of_txt):
         LoginDetail = LoginData()
-        print(LoginDetail)
+      #  print(LoginDetail)
       #  LoginPayload.append(LoginDetail)
        # print(type(LoginPayload))
        # publish_to_kafka(topic_testdata, LoginPayload)
