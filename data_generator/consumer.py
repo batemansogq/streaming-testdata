@@ -15,9 +15,9 @@ config = configparser.ConfigParser()
 config.read("configuration/configuration.ini")
 
 # *** CONFIGURATION ***
-topic_products = config["KAFKA"]["topic_products"]
+""" topic_products = config["KAFKA"]["topic_products"]
 topic_purchases = config["KAFKA"]["topic_purchases"]
-topic_inventories = config["KAFKA"]["topic_inventories"]
+topic_inventories = config["KAFKA"]["topic_inventories"] """
 #Test data topic
 topic_testdata = config["KAFKA"]["topic_testdata"]
 
@@ -33,8 +33,8 @@ def consume_messages():
     configs = get_configs()
 
     consumer = KafkaConsumer(
-        #*topics,
-        'demo.purchases',
+        *topics,
+        #'demo.purchases',
         value_deserializer=lambda m: json.loads(m.decode("utf-8")),
         auto_offset_reset="earliest",
         **configs
