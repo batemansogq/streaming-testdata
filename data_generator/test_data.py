@@ -38,7 +38,7 @@ class LoginData:
         self.last_name = fake.last_name()
         self.phone = random.randint(9000000000, 9999999999)
         self.city = fake.city()
-        self.about = "This is a sample text : about"
+        self.about = "This is a sample text"
         self.event_time = str(datetime.utcnow())
 
     def __str__(self):
@@ -67,8 +67,8 @@ def input_data():
     for i in range(0, number_of_txt):
         LoginDetail = LoginData()
         print(LoginDetail)
-        LoginPayload.append(LoginDetail)
-        print(type(LoginPayload))
+      #  LoginPayload.append(LoginDetail)
+       # print(type(LoginPayload))
        # publish_to_kafka(topic_testdata, LoginPayload)
 #delay for a period
     time.sleep(random.randint(min_freq, max_freq))
