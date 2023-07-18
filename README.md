@@ -50,14 +50,14 @@ To run the application:
 
 ```shell
 # install `kafka-python` python package
-python3 -m pip install kafka-python
+python -m pip install kafka-python
 
-cd sales_generator/
+cd data_generator/
 
 # run in foreground
-python3 ./producer.py
+python ./producer.py
 # alternately, run as background process
-nohup python3 ./producer.py &
+nohup python ./producer.py &
 ```
 
 Manage the topics from within the Kafka container:
