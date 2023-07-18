@@ -25,7 +25,7 @@ max_freq = int(config["STREAM"]["max_freq"])
 number_of_txt = int(config["STREAM"]["number_of_txt"])
 
 # *** VARIABLES ***
-LoginPayload = []
+LoginPayload = {}
 
 class LoginData:
 
@@ -66,8 +66,10 @@ def main():
 # create the individual json payload a number of times and publish to kafka
 def input_data():
     for i in range(0, number_of_txt):
-        LoginPayload.append(LoginData())
-        publish_to_kafka(topic_testdata, LoginPayload)
+        LoginDetail = LoginData()
+        LoginPayload.append(LoginDetail)
+        print(type(LoginPayload))
+       # publish_to_kafka(topic_testdata, LoginPayload)
 #delay for a period
     time.sleep(random.randint(min_freq, max_freq))
 
