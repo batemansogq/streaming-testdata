@@ -14,10 +14,8 @@ config.read("configuration/configuration.ini")
 # *** CONFIGURATION ***
 topic_testdata = config["KAFKA"]["topic_testdata"]
 
-
 def main():
     consume_messages()
-
 
 def consume_messages():
     configs = get_configs()
