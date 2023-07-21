@@ -22,8 +22,6 @@ min_freq = int(config["STREAM"]["min_freq"])
 max_freq = int(config["STREAM"]["max_freq"])
 number_of_txt = int(config["STREAM"]["number_of_txt"])
 
-# *** VARIABLES ***
-LoginPayload = []
 
 class LoginData:
     def __init__(
@@ -75,7 +73,11 @@ def main():
 # create the individual json payload a number of times and publish to kafka
 def input_data():
     for i in range(0, number_of_txt):
+    # define/clear payload
+        LoginPayload = []
+    #load faker
         fake = Faker()
+    #use faker to generate data
         LoginDetail = LoginData(
             "password@123",
             fake.email(),
@@ -89,7 +91,9 @@ def input_data():
             fake.credit_card_number(),
         )
         LoginPayload.append(LoginDetail)
+    #publish record to kafka
         publish_to_kafka(topic_testdata, LoginPayload[0])
+
 #delay for a period
     time.sleep(random.randint(min_freq, max_freq))
 
