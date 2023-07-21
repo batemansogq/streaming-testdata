@@ -37,6 +37,7 @@ class LoginData:
             city: str,
             about: str,
             event_time: str,
+            cc_num: str,
     ):
         self.password = str(password)
         self.email = str(email)
@@ -47,12 +48,13 @@ class LoginData:
         self.city = str(city)
         self.about = str(about)
         self.event_time = str(event_time)
+        self.cc_num = str(cc_num)
 
     def __str__(self):
         return (
             "password: {0}, email: {1}, username: {2}, first_name: {3}, "
             "last_name {4}, phone: {5}, city: {6}, about: {7}, "
-            "event_time: {8}".format(
+            "event_time: {8}, cc_num: {9}".format(
                 self.password,
                 self.email,
                 self.first_name,
@@ -62,6 +64,7 @@ class LoginData:
                 self.city,
                 self.about,
                 self.event_time,
+                self.cc_num,
             )
         )
 
@@ -72,7 +75,19 @@ def main():
 # create the individual json payload a number of times and publish to kafka
 def input_data():
     for i in range(0, number_of_txt):
-        LoginDetail = LoginData()
+        fake = Faker()
+        LoginDetail = LoginData(
+            "password@123",
+            fake.email(),
+            fake.first_name(),
+            fake.first_name(),
+            fake.last_name(),
+            random.randint(9000000000, 9999999999),
+            fake.city(),
+            "This is a sample text",
+            str(datetime.utcnow()),
+            fake.credit_card_number(),
+        )
         LoginPayload.append(LoginDetail)
         publish_to_kafka(topic_testdata, LoginPayload[0])
 #delay for a period
