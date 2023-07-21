@@ -79,14 +79,14 @@ def input_data():
         fake = Faker()
     #use faker to generate data
         LoginDetail = LoginData(
-            "password@123",
+            fake.password(length=8),
             fake.email(),
             fake.first_name(),
             fake.first_name(),
             fake.last_name(),
             random.randint(9000000000, 9999999999),
             fake.city(),
-            "This is a sample text",
+            fake.bothify(text='Product Number: ????-########', letters='ABCDE'),
             str(datetime.utcnow()),
             fake.credit_card_number(),
         )
