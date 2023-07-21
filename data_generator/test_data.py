@@ -26,18 +26,27 @@ number_of_txt = int(config["STREAM"]["number_of_txt"])
 LoginPayload = []
 
 class LoginData:
-
-    def __init__(self):
-        fake = Faker()
-        self.password = "password@123"
-        self.email = fake.email()
-        self.username = fake.first_name()
-        self.first_name = fake.first_name()
-        self.last_name = fake.last_name()
-        self.phone = random.randint(9000000000, 9999999999)
-        self.city = fake.city()
-        self.about = "This is a sample text"
-        self.event_time = str(datetime.utcnow())
+    def __init__(
+            self, 
+            password: str, 
+            email: str,
+            username: str,
+            first_name: str,
+            last_name: str,
+            phone: float,
+            city: str,
+            about: str,
+            event_time: str,
+    ):
+        self.password = str(password)
+        self.email = str(email)
+        self.username = str(first_name)
+        self.first_name = str(first_name)
+        self.last_name = str(last_name)
+        self.phone = float(phone)
+        self.city = str(city)
+        self.about = str(about)
+        self.event_time = str(event_time)
 
     def __str__(self):
         return (

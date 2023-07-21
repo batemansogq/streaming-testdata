@@ -99,7 +99,6 @@ kafka-topics.sh --create --topic $TOPIC_TESTDATA \
     --config cleanup.policy=compact \
     --bootstrap-server $BOOTSTRAP_SERVERS
 
-
 # read topics from beginning
 kafka-console-consumer.sh \
     --topic $TOPIC_PRODUCTS --from-beginning \
