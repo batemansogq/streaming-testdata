@@ -57,7 +57,7 @@ cd data_generator/
 # run in foreground
 python ./test_data.py
 # alternately, run as background process
-nohup python ./producer.py &
+nohup python ./test_data.py &
 ```
 
 Manage the topics from within the Kafka container:
@@ -67,8 +67,8 @@ docker exec -it $(docker container ls --filter  name=stream_kafka.1 --format "{{
 
 export BOOTSTRAP_SERVERS="localhost:9092"
 export TOPIC_PRODUCTS="demo.products"
-export TOPIC_PURCHASES="demo.purchases"
-export TOPIC_INVENTORIES="demo.inventories"
+export TOPIC_TESTDATA="demo.testdata"
+
 
 # list topics
 kafka-topics.sh --list \
@@ -85,8 +85,8 @@ kafka-consumer-groups.sh --list \
   
 # delete topics
 kafka-topics.sh --bootstrap-server $BOOTSTRAP_SERVERS --delete --topic $TOPIC_PRODUCTS
-kafka-topics.sh --bootstrap-server $BOOTSTRAP_SERVERS --delete --topic $TOPIC_PURCHASES
-kafka-topics.sh --bootstrap-server $BOOTSTRAP_SERVERS --delete --topic $TOPIC_INVENTORIES
+kafka-topics.sh --bootstrap-server $BOOTSTRAP_SERVERS --delete --topic $TOPIC_TESTDATA
+
 
 # optional: create partitions (or will be automatically created)
 kafka-topics.sh --create --topic $TOPIC_PRODUCTS \
@@ -94,15 +94,11 @@ kafka-topics.sh --create --topic $TOPIC_PRODUCTS \
     --config cleanup.policy=compact \
     --bootstrap-server $BOOTSTRAP_SERVERS
 
-kafka-topics.sh --create --topic $TOPIC_PURCHASES \
+kafka-topics.sh --create --topic $TOPIC_TESTDATA \
     --partitions 1 --replication-factor 1 \
     --config cleanup.policy=compact \
     --bootstrap-server $BOOTSTRAP_SERVERS
 
-kafka-topics.sh --create --topic $TOPIC_INVENTORIES \
-    --partitions 1 --replication-factor 1 \
-    --config cleanup.policy=compact \
-    --bootstrap-server $BOOTSTRAP_SERVERS
 
 # read topics from beginning
 kafka-console-consumer.sh \
@@ -110,12 +106,10 @@ kafka-console-consumer.sh \
     --bootstrap-server $BOOTSTRAP_SERVERS
 
 kafka-console-consumer.sh \
-    --topic $TOPIC_PURCHASES --from-beginning \
+    --topic $TOPIC_TESTDATA --from-beginning \
     --bootstrap-server $BOOTSTRAP_SERVERS
 
-kafka-console-consumer.sh \
-    --topic $TOPIC_INVENTORIES --from-beginning \
-    --bootstrap-server $BOOTSTRAP_SERVERS
+
 ```
 
 
