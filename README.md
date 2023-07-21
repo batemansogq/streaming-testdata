@@ -2,6 +2,8 @@ This repo is subset of the "Streaming Synthetic Sales Data Generator" by [Gary S
 
 it takes the basic streaming elements and extends it using [Faker](https://pypi.org/project/Faker/) to create configurable test data payloads in JSON format. 
 
+This can be easily extended via the [Faker Providers](https://faker.readthedocs.io/en/master/providers.html).
+
 ## TL;DR
 
 Deploy Kafka
