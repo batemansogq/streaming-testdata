@@ -7,6 +7,7 @@ import random
 import time
 from datetime import datetime
 
+# https://faker.readthedocs.io/en/master/providers.html
 from faker import Faker
 
 from kafka import KafkaProducer

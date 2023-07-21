@@ -8,8 +8,9 @@ Deploy Kafka
 1. `docker stack deploy stream --compose-file docker/kafka-stack.yml` to create local instance of Kafka
 Run the Test data creation scripts
 2. `python -m pip install kafka-python` to install the `kafka-python` package
-4. `python ./data_generator/test_data.py` to start generating streaming data to Apache Kafka
-5. `python3 ./consumer.py` in a separate terminal window to view results
+3. `cd ./data_generator` to switch to the script directory
+4. `python ./test_data.py` to start generating streaming data to Apache Kafka
+5. `python ./consumer.py` in a separate terminal window to view results
 
 ## Background
 
